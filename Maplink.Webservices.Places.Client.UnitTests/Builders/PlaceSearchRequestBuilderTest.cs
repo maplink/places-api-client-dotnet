@@ -66,5 +66,26 @@ namespace Maplink.Webservices.Places.Client.UnitTests.Builders
                 .StartingAtIndex(32).Build()
                 .StartIndex.Should().Be.EqualTo(32);
         }
+
+        [TestMethod]
+        public void ShouldBeARequestBasedOnTerm()
+        {
+            _builder.BasedOnTerm("term").Build()
+                .Term.Should().Be.EqualTo("term");
+        }
+
+        [TestMethod]
+        public void ShouldBeARequestBasedOnState()
+        {
+            _builder.BasedOnState("state").Build()
+                .State.Should().Be.EqualTo("state");
+        }
+
+        [TestMethod]
+        public void ShouldBeARequestBasedOnCity()
+        {
+            _builder.BasedOnCity("city").Build()
+                .City.Should().Be.EqualTo("city");
+        }
     }
 }

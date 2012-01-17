@@ -58,6 +58,20 @@ namespace Maplink.Webservices.Places.Client
             return RetrievePlacesFor(searchRequest);
         }
 
+        public PlaceSearchResult ByTerm(PlaceSearchRequest placeSearchRequest)
+        {
+            var searchRequest = _requestBuilder
+                .WithUriPath("/places/byterm")
+                .WithLicenseInfo(placeSearchRequest.LicenseInfo)
+                .WithStartIndex(placeSearchRequest.StartIndex)
+                .WithArgument("term", placeSearchRequest.Term)
+                .WithArgument("city", placeSearchRequest.City)
+                .WithArgument("state", placeSearchRequest.State)
+                .Build();
+
+            return RetrievePlacesFor(searchRequest);
+        }
+
         public PlaceSearchResult ByUri(PaginationRequest paginationRequest)
         {
             var searchRequest = _requestBuilder

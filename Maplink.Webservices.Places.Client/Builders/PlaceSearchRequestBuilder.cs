@@ -29,9 +29,38 @@ namespace Maplink.Webservices.Places.Client.Builders
             return this;
         }
 
+        public IPlaceSearchRequestBuilder BasedOnTerm(string term)
+        {
+            return FilteredByTerm(term);
+        }
+
         public IPlaceSearchRequestBuilder FilteredByTerm(string term)
         {
             _request.Term = term;
+
+            return this;
+        }
+
+        public IPlaceSearchRequestBuilder BasedOnCity(string city)
+        {
+            return FilteredByCity(city);
+        }
+
+        public IPlaceSearchRequestBuilder FilteredByCity(string city)
+        {
+            _request.City = city;
+
+            return this;
+        }
+
+        public IPlaceSearchRequestBuilder BasedOnState(string state)
+        {
+            return FilteredByState(state);
+        }
+
+        public IPlaceSearchRequestBuilder FilteredByState(string state)
+        {
+            _request.State = state;
 
             return this;
         }
