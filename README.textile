@@ -38,6 +38,20 @@ var placeSearcher = new PlaceSearcher();
 
 var result = placeSearcher.ByTerm(request);
 
+h4. Por Categoria
+
+bc.. var request = new PlaceSearchRequestBuilder()
+               .BasedOnCategory(62)
+               .ForLicense("<login da sua licença>", "<chave da sua licença>")
+               .FilteredByState("SP") // opcional - filtrar por estado
+               .FilteredByCity("Palestina") // opcional - filtrar por cidade
+               .StartingAtIndex(30) // opcional
+               .Build();
+
+var placeSearcher = new PlaceSearcher();
+
+var result = placeSearcher.ByCategory(request);
+
 h4. Paginação
 
 bc.. var paginationRequest = new PaginationRequestBuilder()
