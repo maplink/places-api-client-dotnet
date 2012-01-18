@@ -24,6 +24,20 @@ var placeSearcher = new PlaceSearcher();
 
 var result = placeSearcher.ByRadius(request);
 
+h4. Por Termo
+
+bc.. var request = new PlaceSearchRequestBuilder()
+                .BasedOnTerm("pizza")
+                .ForLicense("<login da sua licença>", "<chave da sua licença>")
+                .FilteredByState("SP") // opcional - filtrar por estado
+                .FilteredByCity("São Paulo") // opcional - filtrar por cidade
+                .StartingAtIndex(30) // opcional
+                .Build();
+
+var placeSearcher = new PlaceSearcher();
+
+var result = placeSearcher.ByTerm(request);
+
 h4. Paginação
 
 bc.. var paginationRequest = new PaginationRequestBuilder()
@@ -35,7 +49,7 @@ result = placeSearcher.ByUri(paginationRequest);
 
 h3. Pesquisa de categorias
 
-h4. Todas as categories (disponíveis para o seu pacote)
+h4. Todas as categorias (disponíveis para o seu pacote)
 
 bc.. var licenseInfo = new LicenseInfo { Key = "<chave da sua licença>", Login = "<login da sua licença>"};
 var categorySearcher = new CategorySearcher();
