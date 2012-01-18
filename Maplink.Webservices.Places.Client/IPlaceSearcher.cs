@@ -6,7 +6,8 @@ namespace Maplink.Webservices.Places.Client
     public interface IPlaceSearcher
     {
         PlaceSearchResult ByRadius(PlaceSearchRequest placeSearchRequest);
-
+        PlaceSearchResult ByTerm(PlaceSearchRequest placeSearchRequest);
+        PlaceSearchResult ByCategory(PlaceSearchRequest placeSearchRequest);
         PlaceSearchResult ByUri(PaginationRequest paginationRequest);
     }
 }

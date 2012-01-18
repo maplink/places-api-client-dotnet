@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using Maplink.Webservices.Places.Client.Arguments;
 using Maplink.Webservices.Places.Client.Builders;
 using Maplink.Webservices.Places.Client.Converters;
@@ -30,6 +31,8 @@ namespace Maplink.Webservices.Places.Client.UnitTests
         private PaginationRequest _paginationRequest;
         private const int CategoryId = 10;
         private const string Term = "term";
+        private const string City = "city";
+        private const string State = "state";
         private const string PaginationUri = "pagination-uri";
         private const int StartIndex = 30;
 
@@ -268,6 +271,28 @@ namespace Maplink.Webservices.Places.Client.UnitTests
             _mockedConverter.Verify(it => it.ToEntity(_retrievedPlaces), Times.Once());
         }
 
+        [TestMethod]
+        public void ShouldRetrievePlacesByTerm()
+        {
+            GivenTheSearchRequestCanBeBuilt()
+                .AndThePlacesCanBeRetrieved()
+                .AndThePlacesCanBeConverted()
+                .WhenFindingByTerm();
+
+            _mockedRetriever.Verify(it => it.From<Client.Resources.Places>(_aRequest), Times.Once());
+        }
+
+        [TestMethod]
+        public void ShouldRetrievePlacesByCategory()
+        {
+            GivenTheSearchRequestCanBeBuilt()
+                .AndThePlacesCanBeRetrieved()
+                .AndThePlacesCanBeConverted()
+                .WhenFindingByCategory();
+
+            _mockedRetriever.Verify(it => it.From<Client.Resources.Places>(_aRequest), Times.Once());
+        }
+
         private PlaceSeacherTest AndThePlacesCanBeConverted()
         {
             _mockedConverter
@@ -323,6 +348,34 @@ namespace Maplink.Webservices.Places.Client.UnitTests
                                       };
 
             _placeSearchRetrievedByProvider = _provider.ByRadius(_placeSearchRequest);
+        }
+
+        private void WhenFindingByCategory()
+        {
+            _placeSearchRequest = new PlaceSearchRequest
+            {
+                CategoryId = CategoryId,
+                City = City,
+                State = State,
+                LicenseInfo = _aLicenseInfo,
+                StartIndex = StartIndex
+            };
+
+            _placeSearchRetrievedByProvider = _provider.ByCategory(_placeSearchRequest);
+        }
+
+        private void WhenFindingByTerm()
+        {
+            _placeSearchRequest = new PlaceSearchRequest
+            {
+                Term = Term,
+                City = City,
+                State = State,
+                LicenseInfo = _aLicenseInfo,
+                StartIndex = StartIndex
+            };
+
+            _placeSearchRetrievedByProvider = _provider.ByCategory(_placeSearchRequest);
         }
 
         private void WhenSearchingByPaginationUri()

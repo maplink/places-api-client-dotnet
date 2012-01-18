@@ -75,17 +75,10 @@ namespace Maplink.Webservices.Places.Client.UnitTests.Builders
         }
 
         [TestMethod]
-        public void ShouldBeARequestBasedOnState()
+        public void ShouldBeARequestBasedOnCategory()
         {
-            _builder.BasedOnState("state").Build()
-                .State.Should().Be.EqualTo("state");
-        }
-
-        [TestMethod]
-        public void ShouldBeARequestBasedOnCity()
-        {
-            _builder.BasedOnCity("city").Build()
-                .City.Should().Be.EqualTo("city");
+            _builder.BasedOnCategory(1).Build()
+                .CategoryId.Should().Be.EqualTo(1);
         }
     }
 }

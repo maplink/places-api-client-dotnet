@@ -7,8 +7,7 @@ namespace Maplink.Webservices.Places.Client.Builders
         IPlaceSearchRequestBuilder ForLicense(string login, string key);
         IPlaceSearchRequestBuilder BasedOnRadius(double radius, double latitude, double longitude);
         IPlaceSearchRequestBuilder BasedOnTerm(string term);
-        IPlaceSearchRequestBuilder BasedOnCity(string city);
-        IPlaceSearchRequestBuilder BasedOnState(string state);
+        IPlaceSearchRequestBuilder BasedOnCategory(int category);
         IPlaceSearchRequestBuilder FilteredByTerm(string term);
         IPlaceSearchRequestBuilder FilteredByCity(string city);
         IPlaceSearchRequestBuilder FilteredByState(string state);
