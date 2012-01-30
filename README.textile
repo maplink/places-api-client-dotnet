@@ -54,6 +54,9 @@ var result = placeSearcher.ByCategory(request);
 
 h4. Paginação
 
+Cada request traz 100 resultados. Para buscar os próximos 100 ou os 100 anteriores, você pode usar o método "ByUri":
+
+
 bc.. var paginationRequest = new PaginationRequestBuilder()
                     .ForLicense("<login da sua licença>", "<chave da sua licença>")
                     .WithUriPathAndQuery(result.NextPageUri)
